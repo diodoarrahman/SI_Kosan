@@ -4,12 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Kos-kosan UNIB</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
         <!-- Styles -->
         <style>
@@ -17,51 +16,72 @@
                 margin: 0;
                 padding: 0;
                 overflow-x: hidden;
-                font-family: 'Poppins', sans-serif;
             }
-            .btn-text {
+            .btn-text, .btn-get-started {
+                background-color: transparent;
                 color: #ffffff;
                 padding: 0.5rem 1rem;
                 transition: all 0.3s ease;
                 text-decoration: none;
                 font-weight: 600;
                 display: inline-block;
-                border: none;
                 cursor: pointer;
                 font-size: 1rem;
                 position: relative;
-                text-transform: uppercase;
-                letter-spacing: 1px;
+                overflow: hidden;
             }
-            .btn-text::after {
+            .btn-text::before, .btn-get-started::before {
                 content: '';
                 position: absolute;
-                width: 100%;
-                height: 2px;
                 bottom: 0;
                 left: 0;
+                width: 100%;
+                height: 2px;
                 background-color: #ffffff;
                 transform: scaleX(0);
-                transform-origin: bottom right;
-                transition: transform 0.3s ease-out;
+                transform-origin: right;
+                transition: transform 0.3s ease;
             }
-            .btn-text:hover {
-                color: #f8f8f8;
-            }
-            .btn-text:hover::after {
+            .btn-text:hover::before, .btn-get-started:hover::before {
                 transform: scaleX(1);
-                transform-origin: bottom left;
+                transform-origin: left;
+            }
+            .btn-text:hover, .btn-get-started:hover {
+                color: #f0f0f0;
+                transform: translateY(-2px);
+                text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+            }
+            .btn-get-started {
+                background-color: #ffffff;
+                color: #1a202c;
+                padding: 0.75rem 1.5rem;
+                border-radius: 9999px;
+                transition: all 0.3s ease;
+                text-decoration: none;
+                font-weight: 600;
+                display: inline-block;
+                cursor: pointer;
+                font-size: 1.1rem;
+                margin-top: 2rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            .btn-get-started:hover {
+                background-color: #f0f0f0;
+                color: #1a202c;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            }
+            .btn-get-started::before {
+                content: none;
             }
             .welcome-text {
-                font-size: 3.5rem;
-                font-weight: 700;
+                font-size: 3rem;
+                font-weight: bold;
                 color: #ffffff;
                 text-align: center;
                 margin-bottom: 2rem;
                 max-width: 80%;
-                text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-                line-height: 1.2;
-                letter-spacing: -1px;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
             }
             .auth-buttons {
                 position: absolute;
@@ -69,10 +89,9 @@
                 right: 1rem;
                 display: flex;
                 gap: 1rem;
+                z-index: 10;
             }
             .content-wrapper {
-                position: relative;
-                z-index: 1;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -91,53 +110,51 @@
                 background-position: center;
                 background-repeat: no-repeat;
             }
+            .website-title {
+                position: absolute;
+                top: 1rem;
+                left: 1rem;
+                font-size: 1.2rem;
+                font-weight: bold;
+                color: #ffffff;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            .website-title::after {
+                content: '';
+                position: absolute;
+                bottom: -3px;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background-color: #ffffff;
+                transform: scaleX(0);
+                transform-origin: right;
+                transition: transform 0.3s ease;
+            }
+            .website-title:hover {
+                color: #f0f0f0;
+                text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+            }
+            .website-title:hover::after {
+                transform: scaleX(1);
+                transform-origin: left;
+            }
+            /* Tambahkan overlay untuk meningkatkan keterbacaan teks */
             .background-overlay {
                 position: absolute;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background-color: rgba(0, 0, 0, 0.4);
-            }
-            .website-title {
-                position: absolute;
-                top: 1rem;
-                left: 1rem;
-                font-size: 1.4rem;
-                font-weight: 700;
-                color: #ffffff;
-                text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-                text-transform: uppercase;
-                letter-spacing: 2px;
-            }
-            .btn-get-started {
-                background-color: #ffffff;
-                color: #1a202c;
-                padding: 1rem 2rem;
-                border-radius: 50px;
-                transition: all 0.3s ease;
-                text-decoration: none;
-                font-weight: 600;
-                display: inline-block;
-                border: none;
-                cursor: pointer;
-                font-size: 1.1rem;
-                margin-top: 2rem;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            }
-            .btn-get-started:hover {
-                background-color: #f8f8f8;
-                transform: translateY(-2px);
-                box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+                background-color: rgba(0, 0, 0, 0.6); /* Meningkatkan opacity */
             }
         </style>
     </head>
     <body class="antialiased">
         <div class="main-container">
             <div class="background-overlay"></div>
-            <div class="website-title">Website Kos-kosan</div>
+            <div class="website-title">Kos-kosan UNIB</div>
 
             @if (Route::has('login'))
                 <div class="auth-buttons">
